@@ -29,7 +29,7 @@ double find_Bfield_normalization(F_ptr F, void *params){
   Func.function = F;
   Func.params = params;
 
-  gsl_integration_cquad(&Func, 0, 1, 0, 1e-12, BfieldNormalization, &pB1, NULL, NULL);
+  gsl_integration_cquad(&Func, 0, 1, 0, 1e-15, BfieldNormalization, &pB1, NULL, NULL);
   gsl_integration_cquad_workspace_free(BfieldNormalization);
 
   pB1 = q * LUMJET / (8 * M_PI * SPEEDC * gsl_pow_2(RJET)*pB1);

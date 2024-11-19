@@ -25,7 +25,7 @@ int N = 250;
   logspaced(first, last, N, frequency);
 
   double pB1 = 0, q = EQUIPART;
-  pB1 = find_Bfield_normalization(pBint2, &q);
+  pB1 = find_Bfield_normalization(pBint1, &q);
 
   printf("%e\n", pB1);
 
