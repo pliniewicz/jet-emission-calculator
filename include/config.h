@@ -4,8 +4,8 @@
 
 // model parameters to edit
 
-#define GMIN 1e1
-#define GMAX 1e5
+#define GMIN 1e2
+#define GMAX 1e6
 #define U0 4e-13
 #define ECMB 2e-9
 

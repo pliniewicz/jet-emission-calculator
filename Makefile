@@ -5,7 +5,7 @@ BIN_DIR := bin
 EXE 	  := $(BIN_DIR)/jets
 CPPFLAGS := -Iinclude -MMD -MP
 CFLAGS   := -Wall     
-LDFLAGS  := -Llib     
+LDFLAGS  := -Llib -z noexecstack
 LDLIBS   := -lm -lgsl -lcuba
 
 SRCS := $(shell find $(SRC_DIR) -name '*.c')

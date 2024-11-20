@@ -12,4 +12,9 @@ typedef double (*F_ptr)(double, void *);
 
 double find_Bfield_normalization(F_ptr F, void *params);
 
+struct normalizationParametersSimplePowerLaw {double gmin; double gmax; double index;};
+
+// double normalize_distribution(F_ptr F, void *params, int profile);
+double normalize_distribution(int profile, void *params);
+
 #endif // !LOGSPACE

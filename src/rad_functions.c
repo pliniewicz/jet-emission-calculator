@@ -10,6 +10,7 @@
 #include <gsl/gsl_mode.h>
 #include <gsl/gsl_sys.h>
 #include <math.h>
+#include "logspace.h"
 
 struct synchrotron_kernel_parameters {double frequency; double magnetic_field; double minimal_gamma; double maximal_gamma; double angle;};
 struct synchrotron_kernel_ball_parameters {double frequency; double bulk_gamma; double magnetic_field; double minimal_gamma; double maximal_gamma; double breaking_gamma; double k1; double sL; double sH; double angle;};
@@ -48,15 +49,41 @@ double nu_critical(double gamma, double magnetic_field)
   return ( 3. * internal_e * magnetic_field * gsl_pow_2(gamma) / (4. * M_PI * internal_me * internal_c) );
 }
 
-double simple_power_law(double gamma, double minimal_gamma, double maximal_gamma, double power_law_index)
+// struct SimplePowerLawParams{
+//   double gmin;
+//   double gmax;
+//   double index;
+// };
+
+double simple_power_law(double x, void *params)
 {
-  if (gamma <= minimal_gamma ) {
+  struct normalizationParametersSimplePowerLaw *p = (struct normalizationParametersSimplePowerLaw *)params;
+  double gmin = p->gmin;
+  double gmax = p->gmax;
+  double index = p->index;
+  if (x <= gmax || x >= gmin) {
+    return x*pow(x, -1.*index);
+  } else {
     return 0;
-  } else if (gamma >= maximal_gamma){
-    return 0;
-  } else
-  return pow(gamma, -1.*power_law_index);
+  }
+  // if (x < gmin ) {
+  //   return 0;
+  // } else if (x > gmax){
+  //   return 0;
+  // } else {
+  // return x*pow(x, -1.*index);
+  // }
 }
+
+// double simple_power_law(double gamma, double minimal_gamma, double maximal_gamma, double power_law_index)
+// {
+//   if (gamma <= minimal_gamma ) {
+//     return 0;
+//   } else if (gamma >= maximal_gamma){
+//     return 0;
+//   } else
+//   return pow(gamma, -1.*power_law_index);
+// }
 
 double simple_power_law_2(double gamma, double minimal_gamma, double maximal_gamma)
 {

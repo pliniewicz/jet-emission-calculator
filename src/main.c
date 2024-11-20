@@ -27,7 +27,31 @@ int N = 250;
   double pB1 = 0, q = EQUIPART;
   pB1 = find_Bfield_normalization(pBint1, &q);
 
-  printf("%e\n", pB1);
+  printf("Normalized magnetic field pressure P_B: %e\n", pB1);
+
+//  --------------------------------------------
+  // double gamma[N];
+  // double gmin = 1e2;
+  // double gmax = 1e6;
+  //
+  // logspaced(gmin, gmax, N, gamma);
+  //
+  // struct normalizationParametersSimplePowerLaw params = {gmin, gmax, 1.};
+  // for (int j = 0; j <= N ; j++) {
+  //   double dupa = simple_power_law(gamma[j], &params);
+  //   printf("%e\n", dupa);
+  // }
+  //
+// ---------------------------------------------
+
+  double gmin = 1e2;
+  double gmax = 1e6;
+  struct normalizationParametersSimplePowerLaw params = {gmin, gmax, 1.};
+
+  double Ke = normalize_distribution(1, &params);
+
+
+  printf("Normalization constant for the electron distribution: %e\n", Ke);
 
   return EXIT_SUCCESS;
 }
