@@ -8,7 +8,8 @@
 #include "config.h"
 #include "profiles.h"
 #include "logspace.h"
-#include "rad_functions.h"
+#include "electron_distributions.h"
+// #include "rad_functions.h"
 
 
 int main(int argc, char *argv[])
@@ -29,24 +30,9 @@ int N = 250;
 
   printf("Normalized magnetic field pressure P_B: %e\n", pB1);
 
-//  --------------------------------------------
-  // double gamma[N];
-  // double gmin = 1e2;
-  // double gmax = 1e6;
-  //
-  // logspaced(gmin, gmax, N, gamma);
-  //
-  // struct normalizationParametersSimplePowerLaw params = {gmin, gmax, 1.};
-  // for (int j = 0; j <= N ; j++) {
-  //   double dupa = simple_power_law(gamma[j], &params);
-  //   printf("%e\n", dupa);
-  // }
-  //
-// ---------------------------------------------
-
   double gmin = 1e2;
   double gmax = 1e6;
-  struct normalizationParametersSimplePowerLaw params = {gmin, gmax, 1.};
+  struct normalizationParametersSimplePowerLaw params = {gmin, gmax, 1};
 
   double Ke = normalize_distribution(1, &params);
 

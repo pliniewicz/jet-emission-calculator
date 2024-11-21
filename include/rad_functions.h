@@ -8,8 +8,8 @@ struct IC_kernel_ball_parameters {double target_energy; double scattered_energy;
 
 double doppler(double gamma, double theta);
 double nu_critical(double gamma, double magnetic_field);
-struct SimplePowerLawParameters {double gmin; double gmax; double index;};
-double simple_power_law(double gamma, void *params);
+// struct SimplePowerLawParameters {double gmin; double gmax; double index;};
+// double simple_power_law(double gamma, void *params);
 double simple_power_law_2(double gamma, double minimal_gamma, double maximal_gamma);
 double broken_power_law(double gamma, double minimal_gamma, double maximal_gamma, double breaking_gamma, double k1, double sL, double sH);
 double exp_cutoff_power_law_2(double gamma, double minimal_gamma, double maximal_gamma);

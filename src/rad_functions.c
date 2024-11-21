@@ -55,17 +55,17 @@ double nu_critical(double gamma, double magnetic_field)
 //   double index;
 // };
 
-double simple_power_law(double x, void *params)
-{
-  struct normalizationParametersSimplePowerLaw *p = (struct normalizationParametersSimplePowerLaw *)params;
-  double gmin = p->gmin;
-  double gmax = p->gmax;
-  double index = p->index;
-  if (x <= gmax || x >= gmin) {
-    return x*pow(x, -1.*index);
-  } else {
-    return 0;
-  }
+// double simple_power_law(double x, void *params)
+// {
+//   struct normalizationParametersSimplePowerLaw *p = (struct normalizationParametersSimplePowerLaw *)params;
+//   double gmin = p->gmin;
+//   double gmax = p->gmax;
+//   double index = p->index;
+//   if (x <= gmax || x >= gmin) {
+//     return x*pow(x, -1.*index);
+//   } else {
+//     return 0;
+//   }
   // if (x < gmin ) {
   //   return 0;
   // } else if (x > gmax){
@@ -73,7 +73,7 @@ double simple_power_law(double x, void *params)
   // } else {
   // return x*pow(x, -1.*index);
   // }
-}
+// }
 
 // double simple_power_law(double gamma, double minimal_gamma, double maximal_gamma, double power_law_index)
 // {

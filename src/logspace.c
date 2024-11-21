@@ -4,6 +4,7 @@
 #include <gsl/gsl_integration.h>
 #include <stdio.h>
 #include "config.h"
+#include "electron_distributions.h"
 
 void logspaced(double first, double last, int N, double space[]) {
 
@@ -40,7 +41,6 @@ double find_Bfield_normalization(F_ptr F, void *params){
 
 }
 
-struct normalizationParametersSimplePowerLaw {double gmin; double gmax; double index;};
 
 // double normalize_distribution(F_ptr F, void *params, int profile){
 double normalize_distribution(int profile, void *params){
