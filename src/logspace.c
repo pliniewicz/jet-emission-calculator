@@ -41,38 +41,29 @@ double find_Bfield_normalization(F_ptr F, void *params){
 
 }
 
-
-// double normalize_distribution(F_ptr F, void *params, int profile){
 double normalize_distribution(int profile, void *params){
   gsl_integration_cquad_workspace *distributionNormalization = gsl_integration_cquad_workspace_alloc(200);
+
+  // W ogóle nie następuje przekazanie parametrów ze struktury do power law
 
   double Ke = 0;
 
   switch (profile) {
-    case 1:
+    default:
       printf("Normalizing for the simple power law\n");
       struct normalizationParametersSimplePowerLaw *p = (struct normalizationParametersSimplePowerLaw *)params;
       double gmin = p->gmin;
       double gmax = p->gmax;
-      double index = p->index;
-
-    // %TODO: przerobić funkcje radiacyjne na f(x, *params)
-
-      // double function_to_integrate(double x, void *parameters){
-      //   (void)parameters;
-      //   return simple_power_law(x, gmin, gmax, index);
-      // }
 
       gsl_function F;
-      // F.function = &function_to_integrate;
       F.function = &simple_power_law;
-      F.params = &params;
+      F.params = &p;
       
-      gsl_integration_cquad(&F, 1e1, 1e5, 1e-15, 1e-15, distributionNormalization, &Ke, NULL, NULL);
+      gsl_integration_cquad(&F, gmin, gmax, 1e-15, 1e-15, distributionNormalization, &Ke, NULL, NULL);
 
       gsl_integration_cquad_workspace_free(distributionNormalization);
       return Ke;
-      // break;
+      break;
   }
 
 }

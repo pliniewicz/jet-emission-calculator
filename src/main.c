@@ -30,11 +30,11 @@ int N = 250;
 
   printf("Normalized magnetic field pressure P_B: %e\n", pB1);
 
-  double gmin = 1e2;
-  double gmax = 1e6;
-  struct normalizationParametersSimplePowerLaw params = {gmin, gmax, 1};
+  // double gmin = 1e2;
+  // double gmax = 1e6;
+  struct normalizationParametersSimplePowerLaw params = {GMIN, GMAX, 2};
 
-  double Ke = normalize_distribution(1, &params);
+  double Ke = normalize_distribution(2, &params);
 
 
   printf("Normalization constant for the electron distribution: %e\n", Ke);
